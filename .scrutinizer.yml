@@ -17,13 +17,21 @@ build:
                 node:
                     version: 6.0.0
         tests: true
+    tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit --coverage-clover=coverage-file'
+                coverage:
+                    file: 'coverage-file'
+                    format: 'clover'
 filter:
     paths:
         - "src/*"
         - "tests/*"
         
 checks:
-    php: true
+    php:
+        code_rating: true
 coding_style:
     php:
         indentation:
