@@ -1,0 +1,28 @@
+build:
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+            environment:
+                node:
+                    version: 6.0.0
+        tests: true
+filter:
+    paths:
+        - "src/*"
+        - "tests/*"
+        
+checks:
+    php: true
+coding_style:
+    php:
+        indentation:
+            general:
+                use_tabs: true
