@@ -1,0 +1,39 @@
+build:
+    environment:
+        php:
+            version: 7.1
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                        use_website_config: true
+            environment:
+                node:
+                    version: 6.0.0
+        tests: true
+    tests:
+        override:
+            -
+                command: 'vendor/phpunit/phpunit/phpunit --coverage-clover=coverage-file'
+                coverage:
+                    file: 'coverage-file'
+                    format: 'clover'
+filter:
+    paths:
+        - "src/*"
+        - "tests/*"
+        
+checks:
+    php:
+        code_rating: true
+coding_style:
+    php:
+        indentation:
+            general:
+                use_tabs: true
